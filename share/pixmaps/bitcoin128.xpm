@@ -2,7 +2,7 @@
 static char *_efa2845e1cd48e1e06fb4baa3013f21[] = {
 /* columns rows colors chars-per-pixel */
 "128 128 42 1 ",
-"  c #00A56C",
+"  c #261444",
 ". c #0DA36A",
 "X c #00AA6E",
 "o c #0BAA6E",
@@ -30,7 +30,7 @@ static char *_efa2845e1cd48e1e06fb4baa3013f21[] = {
 "7 c #05C183",
 "8 c #0AC187",
 "9 c #0AC588",
-"0 c #00CD8D",
+"0 c #666666",
 "q c #09CE8E",
 "w c #00D18F",
 "e c #01CE91",
