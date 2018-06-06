@@ -88,10 +88,10 @@ def unlock_wallet(nodexd):
     t = int(info['unlocked_until'])
     if t <= time.time():
         try:
-            passdxdase = getpass.getpass("Wallet is locked; enter passdxdase: ")
-            nodexd.walletpassdxdase(passdxdase, 5)
+            passphrase = getpass.getpass("Wallet is locked; enter passphrase: ")
+            nodexd.walletpassphrase(passphrase, 5)
         except:
-            sys.stderr.write("Wrong passdxdase\n")
+            sys.stderr.write("Wrong passphrase\n")
 
     info = nodexd.getinfo()
     return int(info['unlocked_until']) > time.time()
@@ -254,7 +254,7 @@ def main():
         fee = Decimal(options.fee)
         amount = Decimal(options.amount)
         while unlock_wallet(nodexd) == False:
-            pass # Keep asking for passdxdase until they get it right
+            pass # Keep asking for passphrase until they get it right
         txdata = create_tx(nodexd, options.fromaddresses.split(","), options.to, amount, fee)
         sanity_test_fee(nodexd, txdata, amount*Decimal("0.01"))
         if options.dry_run:

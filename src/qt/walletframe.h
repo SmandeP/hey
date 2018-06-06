@@ -79,9 +79,9 @@ public slots:
     void encryptWallet(bool status);
     /** Backup the wallet */
     void backupWallet();
-    /** Change encrypted wallet passdxdase */
-    void changePassdxdase();
-    /** Ask for passdxdase to unlock wallet temporarily */
+    /** Change encrypted wallet passphrase */
+    void changePassphrase();
+    /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
     /** Lock wallet */
     void lockWallet();

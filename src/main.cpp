@@ -82,7 +82,7 @@ bool fVerifyingBlocks = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nStakeMinAge = 3 * 60 * 60;
+unsigned int nStakeMinAge = 60 * 60;
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in duffs) are considered zero fee (for relaying and mining)
@@ -2164,24 +2164,39 @@ int64_t GetBlockValue(int nHeight)
     int64_t nSubsidy = 0;
 
     if (nHeight == 0) {
-        nSubsidy = 17500000 * COIN;
+        nSubsidy = 1200000 * COIN;
     } else if (nHeight > 0 && nHeight <= 200) {
-        nSubsidy = 2500 * COIN;
-    } else if (nHeight > 200 && nHeight <= 775600) {
-        nSubsidy = 7 * COIN;
-    } else if (nHeight > 775600 && nHeight <= 1043999) {
-        nSubsidy = 4.5 * COIN;
-    } else if (nHeight > 1043999 && nHeight <= 1562398) {
-        nSubsidy = 3.6 * COIN;
+        nSubsidy = 1 * COIN;
+    } else if (nHeight > 200 && nHeight <= 540000) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight > 540001 && nHeight <= 850920) {
+        nSubsidy = 10 * COIN;
+    } else if (nHeight > 850921 && nHeight <= 1562398) {
+        nSubsidy = 5 * COIN;
     } else {
-        nSubsidy = 2.7 * COIN;
+        nSubsidy = 1 * COIN;
     }
     return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
-    int64_t ret = blockValue / 5 * 3;
+    int64_t ret = 0;
+
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200)
+            return 0;
+    }
+
+	// 65% for Masternodes
+	if (nHeight < 5 && nHeight > 0) {
+	    ret = blockValue  / 100 * 0;
+	} else {
+		ret = blockValue  / 100 * 75;
+
+	}
+
+
     return ret;
 }
 
